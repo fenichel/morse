@@ -5,36 +5,36 @@ from time import sleep
 UNIT_MS = 500
 UNIT_S = .5
 
-DOT = 0
-DASH = 1
+DOT = "."
+DASH = "-"
 
 LETTERS = {
-"A" : [DOT, DASH],
-"B" : [DASH, DOT, DOT, DOT],
-"C" : [DASH, DOT, DASH, DOT],
-"D" : [DASH, DOT, DOT],
-"E" : [DOT],
-"F" : [DOT, DOT, DASH, DOT],
-"G" : [DASH, DASH, DOT],
-"H" : [DOT, DOT, DOT, DOT],
-"I" : [DOT, DOT],
-"J" : [DOT, DASH, DASH, DASH],
-"K" : [DASH, DOT, DASH],
-"L" : [DOT, DASH, DOT, DOT],
-"M" : [DASH, DASH],
-"N" : [DASH, DOT],
-"O" : [DASH, DASH, DASH],
-"P" : [DOT, DASH, DASH, DOT],
-"Q" : [DASH, DASH, DOT, DASH],
-"R" : [DOT, DASH, DOT],
-"S" : [DOT, DOT, DOT],
-"T" : [DASH],
-"U" : [DOT, DOT, DASH],
-"V" : [DOT, DOT, DOT, DASH],
-"W" : [DOT, DASH, DASH],
-"X" : [DASH, DOT, DOT, DASH],
-"Y" : [DASH, DOT, DASH, DASH],
-"Z" : [DASH, DASH, DOT, DOT],
+"A" : ".-",
+"B" : "-...",
+"C" : "-.-.",
+"D" : "-..",
+"E" : ".",
+"F" : "..-.",
+"G" : "--.",
+"H" : "....",
+"I" : "..",
+"J" : ".---",
+"K" : "-.-",
+"L" : ".-..",
+"M" : "--",
+"N" : "-.",
+"O" : "---",
+"P" : ".--.",
+"Q" : "--.-",
+"R" : ".-.",
+"S" : "...",
+"T" : "-",
+"U" : "..-",
+"V" : "...-",
+"W" : ".--",
+"X" : "-..-",
+"Y" : "-.--",
+"Z" : "--..",
 }
 
 def dash():
@@ -60,18 +60,24 @@ def play_letter(letter):
         letter = letter.upper()
         encoding = LETTERS[letter]
         for sound in encoding:
+            print(sound)
             if sound == DOT:
                 dot()
-                print(".")
             elif sound == DASH:
                 dash()
-                print("-")
             short_pause()
         letter_pause()
 
 def play_string(to_play):
     for c in to_play:
         play_letter(c)
+
+def print_string_in_morse(to_print):
+    for c in to_print:
+        if c == " ":
+            print(" ")
+        else:
+            print(LETTERS[c.upper()])
 
 while True:
     string_to_play = input("Request input>")
